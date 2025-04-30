@@ -221,10 +221,11 @@ class Formality_Editor {
         $path = $upload_dir . '/' . $image . '.jpg';
         $count++;
         if(!file_exists($path)) {
-          $endpoint = 'https://source.unsplash.com/' . $image . '/1800x1200';
-          if($disable_ssl) { add_filter('https_ssl_verify', [$this, 'unsplash_disable_ssl'], 11, 2); }
+          //$endpoint = 'https://source.unsplash.com/' . $image . '/1800x1200';
+          $endpoint = 'https://formality.dev/download/unsplash/' . $image . '.jpg';
+          if($disable_ssl) { add_filter('https_ssl_verify', [$this, 'temporary_disable_ssl'], 11, 2); }
           $temp = download_url($endpoint);
-          if($disable_ssl) { remove_filter('https_ssl_verify', [$this, 'unsplash_disable_ssl'], 11, 2); }
+          if($disable_ssl) { remove_filter('https_ssl_verify', [$this, 'temporary_disable_ssl'], 11, 2); }
           if(is_wp_error($temp)) {
             error_log('Formality - ' . $temp->get_error_message());
             if(strpos(strtolower($temp->get_error_message()), 'ssl') !== false) {
@@ -239,8 +240,8 @@ class Formality_Editor {
             $response['status'] = 500;
             break;
           }
-          $size = function_exists('getimagesize') ? getimagesize($temp) : array(1800);
-          if(isset($size[0]) && $size[0]==1800){
+          $size = function_exists('getimagesize') ? getimagesize($temp) : array('mime' => 'image/jpeg');
+          if(isset($size['mime']) && $size['mime']=='image/jpeg'){
             copy($temp, $path);
             $editor = wp_get_image_editor($path);
             if(!is_wp_error($editor) ) {
@@ -260,8 +261,8 @@ class Formality_Editor {
     return $response;
   }
 
-  public function unsplash_disable_ssl($ssl_verify, $url) {
-    return substr($url, 0, 27) === 'https://source.unsplash.com' ? false : true;
+  public function temporary_disable_ssl($ssl_verify, $url) {
+    return substr($url, 0, 27) === 'https://source.unsplash.com' || substr($url, 0, 21) === 'https://formality.dev' ? false : true;
   }
 
   public function prevent_classic_editor($can_edit, $post) {

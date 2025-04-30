@@ -3,9 +3,9 @@ Contributors: michelegiorgi
 Donate link: https://www.paypal.me/michelegiorgi/
 Tags: form, conversational, multistep, design form, gutenberg, block editor
 Requires at least: 6.7
-Tested up to: 6.7
-Stable tag: 1.5.8
-Requires PHP: 7.2
+Tested up to: 6.8
+Stable tag: 1.5.9
+Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -61,13 +61,24 @@ You will find **Formality** menu in your WordPress admin screen.
 
 == Changelog ==
 
+= 1.5.9 =
+Release Date: Apr 30th, 2025
+
+* Prevent XSS on [formality] shortcode¹
+* Fixed template download functionality²
+* Fixed archive page display for forms with undefined titles
+* WordPress 6.8 compatibility
+
+¹ Thanks to Peter Thaleikis for security report
+² Moved to 1st party repository after source.unsplash.com deprecation
+
 = 1.5.8 =
 Release Date: Jan 6th, 2025
 
 * Fix local file inclusion vulnerability¹
 * WordPress 6.7 compatibility
 
-<small>¹ Thanks to LVT-tholv2k for bug report</small>
+¹ Thanks to LVT-tholv2k for bug report
 
 = 1.5.7 =
 Release Date: Feb 28th, 2023
@@ -75,7 +86,7 @@ Release Date: Feb 28th, 2023
 * Fix conditional validation on radio/checkbox input¹
 * WordPress 6.2 compatibility
 
-<small>¹ Thanks to @julien2400056, @anagaaco, @rizoma for bug report</small>
+¹ Thanks to @julien2400056, @anagaaco, @rizoma for bug report
 
 = 1.5.6 =
 Release Date: Oct 31th, 2022
@@ -113,7 +124,7 @@ Release Date: Jan 30th, 2022
 * Remove characters counter from textarea field when max length is not defined
 * Fix keyboard navigation with hidden fields
 
-<small>¹ Thanks to @lukaskopenec for bug report</small>
+¹ Thanks to @lukaskopenec for bug report
 
 = 1.5.1 =
 Release Date: Jan 16th, 2022
@@ -123,7 +134,7 @@ Release Date: Jan 16th, 2022
 * Fix submit errors with not mandatory upload fields
 * Fix step navigation with keyboard
 
-<small>¹ Thanks to @recveri for bug report</small>
+¹ Thanks to @recveri for bug report
 
 = 1.5 =
 Release Date: Jan 8th, 2022
@@ -136,7 +147,7 @@ Release Date: Jan 8th, 2022
 * Various fixes and refinements
 * WordPress 5.9 compatibility
 
-<small>¹ New installations will be automatically download updated templates selection. Old installations (v1.4.2 or previous) can update their templates selection, by clicking on the "Reset/update templates" link (at the end of the template list).</small>
+¹ New installations will be automatically download updated templates selection. Old installations (v1.4.2 or previous) can update their templates selection, by clicking on the "Reset/update templates" link (at the end of the template list).
 
 = 1.4.2 =
 Release Date: Nov 27th, 2021
@@ -160,7 +171,7 @@ Release Date: Sep 6th, 2021
 * Remove 3rd party styles from Formality editor page
 * Change single form and single notification template name ¹
 
-<small>¹ You can override default form and notification templates (source code on public/templates/ directory), by putting formality-form.php and formality-notification.php files inside your active theme's directory.</small>
+¹ You can override default form and notification templates (source code on public/templates/ directory), by putting formality-form.php and formality-notification.php files inside your active theme's directory.
 
 = 1.3.6 =
 Release Date: Aug 8th, 2021

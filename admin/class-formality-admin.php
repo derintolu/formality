@@ -82,7 +82,7 @@ class Formality_Admin {
         $bg_library = wp_get_attachment_image_src($metas["_formality_bg_id"][0], 'thumbnail');
         $bg = $bg_library ? $bg_library[0] : '';
       }
-      echo '<a target="_blank" href="'.$link.'" style="--color1:'.$color1.'; --color2:'.$color2.'; --opacity: '.( $opacity == '100' ? '1' : '0.' . $opacity ).';'. ( $bg ? ' background-image:url('.$bg.')' : '' ) .'">'.$title[0].'</a>';
+      echo '<a target="_blank" href="'.$link.'" style="--color1:'.$color1.'; --color2:'.$color2.'; --opacity: '.( $opacity == '100' ? '1' : '0.' . $opacity ).';'. ( $bg ? ' background-image:url('.$bg.')' : '' ) .'">'. ($title ? $title[0] : '!') .'</a>';
     }
   }
 
