@@ -75,7 +75,7 @@ class Formality_Public {
    * @since    1.0
    */
   public function shortcode() {
-    add_shortcode( 'formality', function($atts) {
+    add_shortcode('formality', function($atts) {
       $content = "";
       if(isset($atts['id']) && $atts['id']) {
         $args = array(
@@ -91,17 +91,17 @@ class Formality_Public {
           $attributes['hide_title'] = isset($atts['hide_title']) ? filter_var($atts['hide_title'], FILTER_VALIDATE_BOOLEAN) : false;
           $attributes['invert_colors'] = isset($atts['invert_colors']) ? filter_var($atts['invert_colors'], FILTER_VALIDATE_BOOLEAN) : false;
           $attributes['disable_button'] = isset($atts['disable_button']) ? filter_var($atts['disable_button'], FILTER_VALIDATE_BOOLEAN) : false;
-          $attributes['cta_label'] = isset($atts['cta_label']) ? $atts['cta_label'] : __("Call to action", "formality");
-          $attributes['align'] = isset($atts['align']) ? $atts['align'] : 'left';
-          while ( $query->have_posts() ) : $query->the_post();
+          $attributes['cta_label'] = isset($atts['cta_label']) ? esc_attr($atts['cta_label']) : __("Call to action", "formality");
+          $attributes['align'] = isset($atts['align']) && in_array($atts['align'], array('center', 'left', 'right', 'wide', 'full')) ? $atts['align'] : 'left';
+          while($query->have_posts()) : $query->the_post();
             global $post;
             $form = new Formality_Form($this->formality, $this->version);
             $content = $form->print(true, $attributes);
           endwhile;
           wp_reset_query();
           wp_reset_postdata();
-          wp_enqueue_style( $this->formality . "-public");
-          wp_enqueue_script( $this->formality . "-public");
+          wp_enqueue_style($this->formality . "-public");
+          wp_enqueue_script($this->formality . "-public");
         }
       }
       return $content;
